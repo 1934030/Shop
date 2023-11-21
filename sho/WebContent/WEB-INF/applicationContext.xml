@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:db.properties</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 获取数据源 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="maxTotal" value="${maxTotal}" />
+		<property name="maxIdle" value="${maxIdle}" />
+	</bean>
+
+	<!-- 配置SqlSessionFactory对象 ,注入数据库连接池 -->
+	<bean id="factory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:com/shop/mapper/*.xml" />
+	</bean>
+
+	<!-- 配置DAO -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.shop.dao" />
+		<property name="sqlSessionFactoryBeanName" value="factory" />
+	</bean>
+
+	<!-- 配置业务Bean，此处扫包，将该包下带有@Service注解的视为Bean -->
+	<context:component-scan base-package="com.shop.service.impl" />
+
+</beans>

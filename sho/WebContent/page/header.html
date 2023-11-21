@@ -1,0 +1,231 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!--公共页眉，并非是标准的html文档格式，
+通过index.jsp中的 include file="/page/header.html" 将上述的公共文件引入进来，从而形成一个完整的页面；
+并且，不会影响到其他页面对于公共文件的引用和使用；-->
+
+<nav class="nav-wrapper">
+    <!--手机端显示logo-->
+    <div class="container navbar-mobile">
+        <!--汉堡按钮-->
+        <a href="#" class="text-center a-circle" data-toggle="collapse"
+           data-target="#example-navbar-collapse"> <span
+                class="glyphicon glyphicon-tasks" style="vertical-align: middle;"></span>
+        </a> <a href="${pageContext.request.contextPath}/toindex" class="my-logo">
+        <img alt="图片"
+             src="${pageContext.request.contextPath}/images/logo.png">
+    </a>
+    </div>
+
+    <div class="nav-outer-container">
+        <div class="nav-bg">
+            <ul class="list-inline" style="margin: 0">
+                <li>
+                    <a href="${pageContext.request.contextPath}/toindex" class="nav-li-link">
+                        <img alt="图片" src="${pageContext.request.contextPath}/images/logo.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/toindex" class="nav-li-link">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span>首页</span>
+                        <span class="global-nav-indicator-bar" style="border-color: #007bb9;"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="nav-li-link">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        <span>产品导航</span>
+                        <b class="caret"></b>
+                        <span class="global-nav-indicator-bar" style="border-color: rgba(214, 72, 39, 1);"></span>
+                    </a>
+                    <div class="menu-change" style="background-color: rgba(214, 72, 39, 1)">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1001">
+                                    <img alt="图片" src="${pageContext.request.contextPath}/images/h_mobile.png"
+                                         width="100%">
+                                    <p class="text-center">移动终端</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1002">
+                                    <img alt="图片" src="${pageContext.request.contextPath}/images/h_fitting.png"
+                                         width="100%">
+                                    <p class="text-center">配件搭载</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1006">
+                                    <img alt="图片" src="${pageContext.request.contextPath}/images/h_cp.png" width="100%">
+                                    <p class="text-center">教育办公</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1004">
+                                    <img alt="图片" src="${pageContext.request.contextPath}/images/home_rob.png"
+                                         width="100%">
+                                    <p class="text-center">智能家居</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1005">
+                                    <img alt="图片" src="${pageContext.request.contextPath}/images/h_clothes.png"
+                                         width="100%">
+                                    <p class="text-center">时尚绝版服装</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro">
+                                    <p class="text-center">
+                                        全部产品
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:;" class="nav-li-link">
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span>精彩推荐</span>
+                        <b class="caret"></b>
+                        <span class="global-nav-indicator-bar" style="border-color: rgba(124, 170, 63, 1);"></span>
+                    </a>
+                    <div class="menu-change" style="background-color: rgba(124, 170, 63, 1)">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1001">
+                                    <span class="glyphicon glyphicon-star span_tit"></span>
+                                    <p class="text-center">最新上架</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-2">
+                                <a href="${pageContext.request.contextPath }/product/showpro?classid=1002">
+                                    <span class="glyphicon glyphicon-fire span_tit"></span>
+                                    <p class="text-center">热销单品</p>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath }/page/service.jsp" class="nav-li-link">
+                        <span class="glyphicon glyphicon-headphones"></span>
+                        <span>服务与支持</span>
+                        <span class="global-nav-indicator-bar" style="border-color: #909191;"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath }/page/aboutus.jsp" class="nav-li-link">
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        <span>关于我们</span>
+                        <span class="global-nav-indicator-bar" style="border-color: rgba(18, 139, 152, 1);"></span>
+                    </a>
+                </li>
+                <!--右侧登录、搜索-->
+                <li class="pull-right">
+                    <form action="${pageContext.request.contextPath }/product/searchPro">
+                        <a href="javascript:;" class="nav-li-link">
+                        <span class="text-center my-circle">
+                            <span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span>
+                        </span>
+                            <span class="global-nav-indicator-bar" style="border-color: #373838;"></span>
+                        </a>
+                        <div class="menu-search" style="background-color: #373838">
+                            <select class="form-control sel_sort" name="classid" style="width: 150px; margin-bottom: 10px">
+                                <option value="0" selected>全品类</option>
+                            </select>
+
+                            <!--<ul class="list-inline" style="margin: 0">
+                                <li><a href="#">全品类</a></li>
+                                <li><a href="#">全部商品</a></li>
+                                <li><a href="#">全部商品</a></li>
+                                <li><a href="#">日志</a></li>
+                            </ul>-->
+                            <div class="navtray-search-section-input">
+                                <input type="text" name="searchkey" placeholder="请输入关键词" autocomplete="off">
+                                <a href="javascript:;" class="btn-search-go">
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span>
+                                    </button>
+                                </a>
+                            </div>
+                            <h4 style="margin-top: 20px">热SOU</h4>
+                            <a href="${pageContext.request.contextPath }/product/productinfo?pid=100002">时尚上衣（世界杯限量版） &gt;</a>
+                            <a href="${pageContext.request.contextPath }/product/productinfo?pid=100006">智能头显穿戴 &gt;</a>
+                            <a href="${pageContext.request.contextPath }/product/productinfo?pid=100004">300°柔性屏智能音箱 &gt;</a>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-vrule pull-right"></li>
+                <c:if test="${!empty myinfo.uname }" var="flag">
+                    <li class="pull-right">
+                        <a href="${pageContext.request.contextPath}/user/userinfo" title="用户中心" class="nav-li-link">
+                            <span class="head-div">
+                                <img src="${pageContext.servletContext.contextPath}/statics/uploadfiles/${myinfo.headimg }"
+                                     width="40px"
+                                     height="40px" class="img-circle">
+						    </span>
+                            <span>&nbsp;&nbsp;${myinfo.uname }</span>
+                        </a>
+                        <a href="#" class="nav-li-link login-out">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            <span>退出</span>
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${not flag}">
+                    <li class="pull-right">
+                        <a href="${pageContext.request.contextPath}/page/login.html" class="nav-li-link">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <span>登录</span>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/page/register.jsp" class="nav-li-link">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span>注册</span>
+                        </a>
+                    </li>
+                </c:if>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    $(function () {
+        /* 以下是 header 公共页面的js */
+        $(".navbar-mobile a:nth-of-type(1)").click(function () {
+            $(".nav-outer-container").toggle(300);
+        });
+
+        $(".login-out").click(function () {
+            $.get("${pageContext.request.contextPath}/login/invali", function (date) {
+                alert("退出成功，请重新登录");
+                window.location.reload();
+            });
+        });
+
+        /*只执行一次的方法
+        $(".search_ho").one("mouseover",function () {
+        })*/
+        $.get("${pageContext.request.contextPath}/sort/getSort", function (date) {
+            var html = "";
+            console.log(date.sort_list.length);
+            for (var i = 0; i < date.sort_list.length; i++) {
+                var obj = date.sort_list[i];
+                html+=getHtml(obj);
+            }
+            $(".sel_sort").append(html);
+        });
+        function getHtml(obj) {
+            var $html = "<option value=\""+obj.classid+"\">"+obj.cname+"</option>";
+            return $html;
+        }
+        /*$(".second-list").prev("li").click(function () {
+            $(this).find(".glyphicon-plus").css("transform","rotate(45deg)");
+        });*/
+    })
+</script>

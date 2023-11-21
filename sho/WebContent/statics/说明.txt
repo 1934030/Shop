@@ -1,0 +1,2 @@
+这个文件是图片上传保存的位置，应当放在Tomcat安装目录的wtpwebapps文件夹下的项目下
+如：D:\Program Files\Tomcat\wtpwebapps\technology\statics

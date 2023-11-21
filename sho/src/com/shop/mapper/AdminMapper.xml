@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.AdminMapper">
+
+    <select id="selAdmByID" parameterType="int" resultType="com.shop.model.Admin">
+        SELECT *
+        FROM admin
+        WHERE adminid = #{adminid}
+    </select>
+
+    <select id="checkLogin" parameterType="com.shop.model.Admin" resultType="int">
+        SELECT IFNULL(MAX(adminid), 0)
+        FROM admin
+        WHERE adminid = #{adminid} AND password = #{password} AND grade != 0
+    </select>
+
+    <select id="getAdminList" parameterType="int" resultType="com.shop.model.Admin">
+        SELECT *
+        FROM admin
+    </select>
+
+    <delete id="deleteAdminById" parameterType="int">
+        DELETE FROM admin
+        WHERE adminid = #{adminid}
+    </delete>
+
+    <update id="updateAdminById" parameterType="com.shop.model.Admin">
+        UPDATE admin
+        <set>
+            <if test="aimg!=null and aimg!=''">
+                aimg = #{aimg},
+            </if>
+            <if test="aname!=null and aname!=''">
+                aname = #{aname},
+            </if>
+            <if test="grade>=0">
+                grade = #{grade},
+            </if>
+            <if test="password!=null and password!=''">
+                password = #{password},
+            </if>
+        </set>
+        WHERE adminid = #{adminid}
+    </update>
+
+    <insert id="addAdmin" parameterType="com.shop.model.Admin">
+        INSERT INTO admin (aimg, aname, password, grade) VALUES (#{aimg}, #{aname}, #{password}, #{grade})
+    </insert>
+
+</mapper>

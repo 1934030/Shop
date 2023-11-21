@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.OrderMapper">
+
+    <insert id="addOrder" parameterType="com.shop.model.Order">
+        <!-- order="AFTER"意味着：mysql插入数据后，获取id，将新插入记录的id值 放入User对象id属性中-->
+        <selectKey keyProperty="orderid" resultType="int" order="AFTER">
+            SELECT last_insert_id() AS orderid
+        </selectKey>
+        INSERT INTO `order` VALUES(null,#{ordercode},#{uid},0,#{orderaddress},#{postalfee},curdate(),'','')
+    </insert>
+
+    <insert id="addOrderDetail">
+        INSERT INTO orderdetail VALUES (NULL, #{orderid}, #{pid}, #{pimg}, #{pname}, #{price}, #{odetailnum})
+    </insert>
+
+    <!-- resultType可以把查询结果封装到pojo类型中，但必须pojo类的属性名和查询到的数据库表的字段名一致。
+    type就是指定映射到哪一个pojo； -->
+    <resultMap id="OrderResultMap" type="com.shop.model.Order">
+        <id property="orderid" column="orderid"/>
+        <result property="ordercode" column="ordercode"/>
+        <result property="uid" column="uid"/>
+        <result property="status" column="status"/>
+        <result property="orderaddress" column="orderaddress"/>
+        <result property="postalfee" column="postalfee"/>
+        <result property="orderdate" column="orderdate"/>
+        <result property="orderpostcode" column="orderpostcode"/>
+        <result property="orderpostname" column="orderpostname"/>
+        <result property="uname" column="uname"/>
+
+        <!-- order 与 orderdetail 一对多关系 -->
+        <collection property="odetails" ofType="com.shop.model.OrderDetail">
+            <id property="odetailid" column="odetailid"/>
+            <result property="pid" column="pid"/>
+            <result property="pname" column="pname"/>
+            <result property="price" column="price"/>
+            <result property="odetailnum" column="odetailnum"/>
+            <result property="pimg" column="pimg"/>
+        </collection>
+    </resultMap>
+
+    <select id="getMyOrders" resultMap="OrderResultMap">
+        SELECT
+        o.orderid orderid,
+        ordercode ordercode,
+        uid uid,
+        status status,
+        orderaddress orderaddress,
+        postalfee postalfee,
+        orderdate orderdate,
+        orderpostcode orderpostcode,
+        orderpostname orderpostname,
+        odetailid odetailid,
+        pid pid,
+        pname pname,
+        price price,
+        odetailnum odetailnum,
+        pimg pimg
+        FROM `order` o JOIN orderdetail od
+        ON o.orderid=od.orderid
+        WHERE uid=#{uid}
+        <if test="status!=null">
+            AND status=#{status}
+        </if>
+        ORDER BY ordercode DESC
+    </select>
+
+    <select id="getOrderStatusById" parameterType="int" resultType="int">
+        SELECT status
+        FROM `order`
+        WHERE orderid = #{orderid}
+    </select>
+
+    <update id="upOrderStatus">
+        UPDATE `order`
+        SET status = #{status}
+        WHERE orderid = #{orderid}
+    </update>
+
+    <delete id="deleteOrder" parameterType="int">
+        DELETE FROM `order`
+        WHERE orderid = #{orderid}
+    </delete>
+
+    <select id="countOrderStatus" resultType="int">
+        SELECT COUNT(*) AS count
+        FROM `order`
+        WHERE uid = #{uid} AND status = #{status}
+    </select>
+
+    <!-- admin操作的语句 -->
+    <!-- mybatis在处理参数时会与将对象解释为布尔值，非零是视为真，为零视为假。当你传入整型的0是就被解析为null了 -->
+    <select id="getOrders" parameterType="com.shop.model.Order" resultMap="OrderResultMap">
+        SELECT
+        o.orderid orderid,
+        ordercode ordercode,
+        o.uid uid,
+        o.status status,
+        o.orderaddress orderaddress,
+        o.postalfee postalfee,
+        o.orderdate orderdate,
+        o.orderpostcode orderpostcode,
+        orderpostname orderpostname,
+        od.*,
+        u.uname uname
+        FROM `order` o
+        JOIN `user` u
+        JOIN orderdetail od
+        ON o.orderid = od.orderid
+        AND o.uid = u.uid
+        <where>
+            <if test="params.orderCode!=null and params.orderCode!=''">
+                AND o.ordercode=#{params.orderCode}
+            </if>
+            <if test="params.uid!=null and params.uid!=''">
+                AND o.uid=#{params.uid}
+            </if>
+            <if test="params.status!=null and params.status!=''">
+                AND o.status=#{params.status}
+            </if>
+            <if test="params.startDate!=null and params.startDate!=''">
+                AND o.orderdate &gt;= #{params.startDate}
+            </if>
+            <if test="params.endDate!=null and params.endDate!=''">
+                AND o.orderdate &lt;= #{params.endDate}
+            </if>
+        </where>
+        <if test="params.sort!=null">
+            <choose>
+                <when test="params.sort==1">
+                    ORDER BY o.orderdate DESC
+                </when>
+                <when test="params.sort==2">
+                    ORDER BY o.status DESC
+                </when>
+                <when test="params.sort==3">
+                    ORDER BY o.uid DESC
+                </when>
+                <otherwise>
+                    ORDER BY o.ordercode DESC
+                </otherwise>
+            </choose>
+        </if>
+        <if test="params.sort==null">
+            ORDER BY o.ordercode DESC
+        </if>
+    </select>
+
+    <select id="getOrderDetailById" parameterType="int" resultMap="OrderResultMap">
+        SELECT
+            o.orderid     orderid,
+            ordercode     ordercode,
+            uid           uid,
+            status        status,
+            orderaddress  orderaddress,
+            postalfee     postalfee,
+            orderdate     orderdate,
+            orderpostcode orderpostcode,
+            orderpostname orderpostname,
+            odetailid     odetailid,
+            pid           pid,
+            pname         pname,
+            price         price,
+            odetailnum    odetailnum,
+            pimg          pimg
+        FROM `order` o
+            JOIN orderdetail od
+                ON o.orderid = od.orderid
+        WHERE o.orderid = #{orderid}
+        ORDER BY odetailid
+    </select>
+
+    <update id="updateOrderPostInfo">
+        UPDATE `order`
+        SET orderpostname = #{postname}, orderpostcode = #{postcode}
+        WHERE orderid = #{orderid}
+    </update>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.UserMapper">
+
+    <select id="checkUid" parameterType="int" resultType="int">
+        SELECT IFNULL(MAX(uid), 0)
+        FROM user
+        WHERE uid = #{uid}
+    </select>
+
+    <select id="checkLogin" parameterType="com.shop.model.User" resultType="int">
+        SELECT IFNULL(MAX(uid), 0)
+        FROM user
+        WHERE uid = #{uid} AND password = #{password}
+    </select>
+
+    <select id="showUserInfo" parameterType="int" resultType="com.shop.model.User">
+        SELECT *
+        FROM user
+        WHERE uid = #{uid}
+    </select>
+
+    <update id="upUser">
+        UPDATE user
+        SET
+            headimg   = #{headimg},
+            uname     = #{uname},
+            password  = #{password},
+            myname    = #{myname},
+            sex       = #{sex},
+            birthday  = #{birthday},
+            vip       = #{vip},
+            phone     = #{phone},
+            idnum     = #{idnum},
+            email     = #{email},
+            address   = #{address},
+            signature = #{signature},
+            status    = #{status},
+            bytime    = #{bytime},
+            lasttime  = #{lasttime}
+        WHERE uid = #{uid}
+    </update>
+
+    <insert id="insertUserLog" parameterType="com.shop.model.Log" keyProperty="logid" useGeneratedKeys="true">
+        INSERT INTO log (uid, adminid, descb, bytime) VALUES (#{uid}, #{adminid}, #{descb}, #{bytime})
+    </insert>
+
+    <select id="selAllUser" resultType="com.shop.model.User">
+        SELECT *
+        FROM user
+    </select>
+
+    <insert id="addUser" parameterType="com.shop.model.User">
+        INSERT INTO user (uname, password, bytime) VALUE (#{uname}, #{password}, #{bytime})
+    </insert>
+
+    <select id="selUserByUname" resultType="com.shop.model.User" parameterType="String">
+        SELECT *
+        FROM user
+        WHERE uname = #{uname}
+    </select>
+
+    <delete id="delUserById" parameterType="int">
+        DELETE FROM `user`
+        WHERE uid = #{uid}
+    </delete>
+
+</mapper>

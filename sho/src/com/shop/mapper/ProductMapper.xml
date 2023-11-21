@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.ProductMapper">
+
+    <select id="proSelByCId" parameterType="int" resultType="com.shop.model.Product">
+        SELECT
+            product.*,
+            classification.cname
+        FROM product
+            INNER JOIN classification
+                ON product.classid = classification.classid
+        WHERE pid = #{pid}
+    </select>
+
+    <select id="proSelByCIds" resultType="com.shop.model.Product">
+        SELECT * FROM product WHERE pid IN
+        <foreach collection="array" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+
+    </select>
+
+    <select id="proSelCount" resultType="int">
+        select count(*) as count from product
+        where 1=1
+        <if test="classid!=null and classid!=''">
+            AND classid=#{classid}
+        </if>
+    </select>
+
+    <select id="findPage" parameterType="com.shop.model.Page" resultType="com.shop.model.Product">
+        SELECT
+        pro.*,
+        sort.cname FROM product pro
+        INNER JOIN classification sort
+        ON pro.classid=sort.classid
+        <if test="pclassid!=null and pclassid!=''">
+            AND pro.classid=${pclassid}
+        </if>
+        LIMIT ${beginIndex},${everyPage}
+    </select>
+
+    <select id="findClassName" parameterType="int" resultType="com.shop.model.ClassIfication">
+        SELECT *
+        FROM classification
+        WHERE classid = #{classid}
+    </select>
+
+    <select id="selProductAll" resultType="com.shop.model.Product">
+        SELECT
+            product.*,
+            classification.cname
+        FROM product
+            INNER JOIN classification
+                ON product.classid = classification.classid
+        ORDER BY product.bytime DESC
+    </select>
+
+    <select id="proSelAllCount" resultType="int">
+        SELECT count(*) AS count
+        FROM product
+    </select>
+
+    <select id="findAllPage" parameterType="int" resultType="com.shop.model.Product">
+        SELECT
+            product.*,
+            classification.cname
+        FROM product
+            INNER JOIN classification
+                ON product.classid = classification.classid
+        ORDER BY product.bytime DESC
+        LIMIT ${beginIndex}, ${everyPage}
+    </select>
+
+    <update id="upProduct" parameterType="com.shop.model.Product">
+        UPDATE product
+        SET
+            pname   = #{pname},
+            pimg    = #{pimg},
+            price   = #{price},
+            stock   = #{stock},
+            title   = #{title},
+            descb   = #{descb},
+            bytime  = #{bytime},
+            classid = #{classid}
+        WHERE pid = #{pid}
+    </update>
+
+    <insert id="addProduct" parameterType="com.shop.model.Product">
+        INSERT INTO product (pname, pimg, price, stock, descb, bytime, classid)
+        VALUES (#{pname}, #{pimg}, #{price}, #{stock}, #{descb}, #{bytime}, #{classid})
+    </insert>
+
+    <!-- ${}与#{}，${}中必须是value，${} 会将传入的参数完全拼接到sql语句中，也就是相当于一个拼接符号，一般拼接字符串使用。
+    可以使用@Param()指定value，当输入参数是实体类时，value当为实体类的名称；
+    #{} 是一个占位符，mybatis最后会将这个占位符，替换成“?”最后才进行 prepareStatement 的相应位置的“?”的替换-->
+    <select id="selNumProduct" parameterType="int" resultType="com.shop.model.Product">
+        SELECT *
+        FROM product
+        ORDER BY bytime DESC
+        LIMIT 0, ${index}
+    </select>
+
+    <!-- @Param 作为Dao层的注解，作用是用于传递参数，从而可以与SQL中的的字段名相对应，一般在2=<参数数<=5时使用最佳。
+    此时在mapper中不需要写参数输入类型“parameterType”，因为 @Param 会自动入参-->
+    <select id="selTypePro" resultType="com.shop.model.Product">
+        SELECT *
+        FROM product
+        ORDER BY ${type} ${sort}
+        LIMIT 0, ${index}
+    </select>
+
+    <!-- 模糊查询：select * from product where 1=1 and pname like '%手%' and classid=1001 -->
+    <select id="searchProduct" resultType="com.shop.model.Product">
+        SELECT * FROM product WHERE 1=1
+        <if test="keyname != null">
+            AND pname LIKE '%${keyname}%'
+        </if>
+        <if test="classid != 0 and classid!=null and classid!=''">
+            AND classid=#{classid}
+        </if>
+    </select>
+
+    <delete id="delProduct" parameterType="int">
+        DELETE FROM product
+        WHERE pid = #{pid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Sun Jul 11 15:25:02 CST 2021
+org.eclipse.jst.jee.server\:sho=D\:\\spring-tool-suite-3.9.12.RELEASE-e4.13.0-win32-x86_64(1)\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\sho
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\Shiso\\Desktop\\\u5546\u57CE\\sho\\WebContent\\WEB-INF\\lib\\spring-web-4.3.9.RELEASE.jar=D\:\\spring-tool-suite-3.9.12.RELEASE-e4.13.0-win32-x86_64(1)\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\sho\\WEB-INF\\lib\\spring-web-4.3.9.RELEASE.jar

@@ -1,0 +1,11 @@
+INDEX VERSION 1.4+C:\Users\Shiso\Desktop\илЁг\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4148388763.index
+3872650749.index
+1763189811.index
+1990642234.index
+1070566063.index
+4026169575.index
+2293210337.index
+2244298065.index
+2248221801.index
+3956337379.index

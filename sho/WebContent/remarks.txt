@@ -1,0 +1,53 @@
+模块名controller.java     controller文件
+模块名Form.java       form报表文件
+模块名Svc.java        service文件
+表  名Dao.java         dao文件
+表  名Vo.java          vo文件
+表  名PK.java          主键的vo文件
+类名：大驼峰，不要以“A”，“An”或“The”开头
+方法名：小驼峰
+变量名：小驼峰
+接口名：接口名前面加“I”
+类常量名：全大写，单词间用下划线隔开 ，如：static final int MIN_WIDTH = 4;
+
+<p>Title: dao层，处理数据库</p>
+<p>Description: 缴费</p>
+<p>Copyright: Copyright (c) 2019</p>
+<p>Company: SI-TECH </p>
+@author 王驰
+@version 1.0
+
+中文写出每个参数和返回值的含义
+@param CustID:  客户ID
+@return 返回用户的单位信息
+@throws Exception
+
+接口说明
+包括：作者、时间、类功能、目的、如何使用等
+	 
+	 //顶部单行注释上留空行
+	public interface IUserDao {		//尾部单行注释前要留白
+		核心代码...
+	}
+
+ajax注意：
+注解：@RequestMapping(value = "XXX",produces = "application/json;charset=UTF-8")
+produces = "application/json;charset=UTF-8"不要忘记加上，否则请求成功，但数据无法回传到前端
+
+java八大基本数据类型及其封装类（注意，String是类，部署数据类型）：
+byte：8位，最大存储数据量是255，存放的数据范围是-128~127之间。
+Byte
+short：16位，最大数据存储量是65536，数据范围是-32768~32767之间。
+Short
+char：16位，存储Unicode码，用单引号赋值。
+Char
+int：32位，最大数据存储容量是2的32次方减1，数据范围是负的2的31次方到正的2的31次方减1，不可为null
+Integer：可以为null
+float：32位，数据范围在3.4e-45~1.4e38，直接赋值时必须在数字后加上f或F，不可为null
+Float：可以为null
+long：64位，最大数据存储容量是2的64次方减1，数据范围为负的2的63次方到正的2的63次方减1。
+Long
+double：64位，数据范围在4.9e-324~1.8e308，赋值时可以加d或D也可以不加。
+Double
+boolean：只有true和false两个取值。
+Boolean

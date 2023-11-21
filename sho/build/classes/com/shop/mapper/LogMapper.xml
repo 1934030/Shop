@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.LogMapper">
+
+    <select id="logSelByUId" parameterType="int" resultType="com.shop.model.Log">
+        SELECT *
+        FROM log
+        WHERE uid = #{uid}
+        ORDER BY bytime DESC
+        LIMIT 0, 20
+    </select>
+
+    <select id="logSelCount" parameterType="int" resultType="int">
+        SELECT count(*) AS count
+        FROM log
+        WHERE uid = #{uid}
+    </select>
+
+    <select id="findLoad" parameterType="com.shop.model.Page" resultType="com.shop.model.Log">
+        SELECT
+            log.descb,
+            log.bytime,
+            log.logid,
+            user.uname
+        FROM log
+            INNER JOIN user
+                ON log.uid = user.uid
+        WHERE log.uid = ${uid}
+        ORDER BY bytime DESC
+        LIMIT ${beginIndex}, ${everyPage}
+    </select>
+
+    <delete id="deleteLogByIds" parameterType="int">
+        DELETE FROM log WHERE logid IN
+        /*collection数组名，separator分隔符，item为数组起的别名*/
+        <foreach collection="logids" open="(" separator="," item="logid" close=")">
+            #{logid}
+        </foreach>
+    </delete>
+
+    <delete id="deleteLogAll">
+        DELETE FROM log
+        WHERE 1 = 1
+    </delete>
+
+</mapper>

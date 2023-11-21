@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.ShoppingCartMapper">
+
+    <select id="selAllCart" parameterType="int" resultType="com.shop.model.ShoppingCart">
+        SELECT
+            product.*,
+            shoppingcart.*
+        FROM shoppingcart
+            INNER JOIN product
+                ON shoppingcart.pid = product.pid
+                   AND shoppingcart.uid = #{uid}
+        ORDER BY cartbytime DESC
+    </select>
+
+    <insert id="addCart">
+        INSERT INTO shoppingcart (uid, pid, numbers, priceall, cartbytime)
+        VALUES (#{uid}, #{pid}, #{numbers}, #{priceall}, #{cartbytime})
+    </insert>
+
+    <delete id="delCartByID" parameterType="int">
+        DELETE FROM shoppingcart
+        WHERE carid = #{carid}
+    </delete>
+
+</mapper>

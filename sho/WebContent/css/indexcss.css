@@ -1,0 +1,220 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+}
+
+.height-style {
+    height: 100%;
+    position: relative;
+}
+
+.float-img {
+    width: 250px;
+    height: 30px;
+    background-color: #c0c0c0;
+    position: absolute;
+    background: url("../images/uper (1).png") no-repeat;
+    background-size: cover;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes up_and_down {
+    0% {
+        bottom: 4px;
+    }
+    50% {
+        bottom: 12px;
+    }
+    100% {
+        bottom: 4px;
+    }
+}
+
+.bottom-img {
+    position: absolute;
+    bottom: 0;
+    width: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    cursor: pointer;
+    animation-name: up_and_down; /* 引用动画 */
+    animation-duration: 1.8s;
+    animation-timing-function: ease-in-out; /* 动画的速度曲线 ease-in-out 低速开始和结束 */
+    animation-delay: revert; /* 何时开始 */
+    animation-iteration-count: infinite; /* 播放次数 无线循环 */
+    animation-direction: alternate; /* 动画应该轮流反向播放 */
+    animation-play-state: running; /* 规定动画正在播放 */
+}
+
+.carousel-control2 {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .8);
+    transform: translateY(-50%);
+}
+
+.carousel-control2.right {
+    right: 20px;
+    left: auto;
+    background-repeat: repeat-x;
+}
+
+.carousel-control2 span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+    display: inline-block;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+}
+
+.carousel a {
+    color: #fff;
+}
+
+.carousel:hover .carousel-control2 {
+    opacity: 1;
+    transition: 1s;
+}
+
+.carousel-indicators li {
+    width: 40px !important;
+    height: 6px !important;
+    border: none;
+    border-radius: 0;
+    background: rgba(0, 0, 0, .5);
+}
+
+.carousel-indicators .active {
+    background-color: #007cba;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+.bg-height {
+    height: 100% !important;
+}
+
+.bg-height .item {
+    height: 100%;
+    background-size: cover;
+}
+.bg-height .item:nth-of-type(1) {
+    height: 100%;
+    background: url('../images/banner-1.jpg') no-repeat;
+    background-size: cover;
+}
+.bg-height .item:nth-of-type(2) {
+    height: 100%;
+    background: url('../images/banner-2-1.jpg') no-repeat;
+    background-size: cover;
+}
+.bg-height .item:nth-of-type(3) {
+    height: 100%;
+    background: url('../images/banner-3.jpg') no-repeat;
+    background-size: cover;
+}
+
+.center-content {
+    text-align: center;
+    background-color: #fff;
+    margin-top: 80px;
+    padding-top: 80px;
+}
+
+.footer-page {
+    margin-top: 80px;
+}
+
+.public-div {
+    background-color: #000;
+    color: #fff;
+    padding: 0 50px 20px 50px;
+}
+
+.public-div img {
+    width: 100%;
+    padding: 0 80px;
+}
+
+.public-div p {
+    margin: 0;
+}
+
+.a1_img {
+    padding: 25px;
+    height: 450px;
+}
+
+.a2_img {
+    padding: 20px;
+    height: 210px;
+}
+
+.a1_img, .a2_img {
+    display: block;
+    overflow: hidden;
+    background-color: #fff;
+    transition: .35s;
+    border-radius: 4px;
+}
+
+.a1_img:hover, .a2_img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1px 3px 8px rgba(28, 41, 47, .08);
+}
+.a1_img:hover img,.a2_img:hover img{
+    transition: 2s linear;
+    transform: rotateY(360deg);
+}
+
+.a2_margin {
+    margin-top: 30px;
+}
+
+.a1_img img, .a2_img img {
+    width: auto;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .height-style {
+        height: 30%;
+    }
+
+    .dropdown-menu {
+        background-color: #fff;
+    }
+}
+
+@media (max-width: 1199px) {
+    .media-div {
+        margin-top: 30px;
+    }
+
+    .margin-div {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+}

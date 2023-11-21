@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <!-- 允许静态资源请求，否则css、js、图片等资源无法加载显示 -->
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+
+    <!-- 切面扫包，扫描包下带有@Aspect，视为aop的注解 -->
+    <context:component-scan base-package="com.shop.*"/>
+    <!-- Spring AOP实现方式有两种，一种使用JDK动态代理， 另一种通过CGLIB来为目标对象创建代理。如果被代理的目标实现了至少一个接口，
+        则会使用JDK动态代理，所有该目标类型实现的接口都将被代理。 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!-- 扫描包，这样的话该包下带有@Controller的注解将作为Bean注册进Spring容器  -->
+    <context:component-scan base-package="com.shop.controller"/>
+
+    <!-- 视图名称解析器，解析jsp文件前后缀，会拼接字符生成：前缀+返回字符串+后缀的形式，如：/WEB-INF/view/+toindex+.jsp -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"> </property>
+        <property name="suffix" value=".jsp"> </property>
+    </bean>
+
+    <mvc:interceptors>
+        <!-- 配置用户登录拦截器(不)作用的路径 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <mvc:mapping path="/usercart/**"/>
+            <mvc:mapping path="/product/**"/>
+            <mvc:mapping path="/order/**"/>
+            <mvc:exclude-mapping path="/product/showpro"/><!--以下是不作用路径，即不拦截-->
+            <mvc:exclude-mapping path="/product/getHotList"/>
+            <mvc:exclude-mapping path="/product/searchPro"/>
+            <bean class="com.shop.core.LoginInterceptor"> </bean>
+        </mvc:interceptor>
+        <!--配置管理员登录拦截器(不)作用的路径-->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin"/>
+            <mvc:mapping path="/admin/**"/>
+            <mvc:mapping path="/adminuser/**"/>
+            <mvc:mapping path="/adminorder/**"/>
+            <mvc:mapping path="/adminproduct/**"/>
+            <mvc:exclude-mapping path="/admin/loginpage"/>
+            <mvc:exclude-mapping path="/admin/login"/>
+            <bean class="com.shop.core.AdminLoginInterceptor"> </bean>
+        </mvc:interceptor>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"> </bean>
+    </mvc:interceptors>
+
+    <!-- 配置上传文件解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 最大内存大小10M -->
+        <property name="maxInMemorySize" value="10240"/>
+        <!-- 最大文件大小，-1为不限制大小 -->
+        <property name="maxUploadSize" value="-1"/>
+    </bean>
+
+</beans>

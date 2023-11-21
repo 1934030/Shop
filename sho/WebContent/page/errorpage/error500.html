@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>500 - 内部服务器错误。</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+            overflow-X: hidden;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-X: hidden;
+            font-family: "POP字体"
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .body-opa {
+            background: linear-gradient(45deg, #ff2b4a 0%, #007bb9 100%);
+            opacity: 0.5;
+            position: fixed;
+            pointer-events: none; /*鼠标事件穿过该元素，并指向位于元素下面的元素*/
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            background-position: center;
+        }
+
+        .top {
+            width: 100%;
+            height: 30%;
+            background: url("../images/errorimages/education.jpg");
+            background-size: cover;
+            /*background-color: rgba(255,0,0,.2);*/
+        }
+
+        .foot {
+            width: 100%;
+            min-height: 100%;
+            background-color: white;
+            transform: translateY(-100px);
+        }
+
+        .header {
+            width: 120%;
+            height: 200px;
+            font-size: 30px;
+            transform: rotate(-5deg) translate(-10%, -100px);
+            background-color: white;
+        }
+
+        .header-main {
+            text-align: center;
+            position: relative;
+            border-bottom: 2px solid #999;
+        }
+
+        .header-center {
+            position: relative;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .header-circle {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            position: absolute;
+            right: -80px;
+            top: -50%;
+            border-radius: 50%;
+        }
+
+        .header-circle2 {
+            width: 70px;
+            height: 70px;
+            color: white;
+            text-align: center;
+            line-height: 70px;
+            margin: 5px auto;
+            background-color: #007bb9;
+            border-radius: 50%;
+        }
+
+        .main-left {
+            height: 300px;
+            font-size: 40px;
+            font-weight: bold;
+            background: url("../images/errorimages/robote.png") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+<!--遮罩层-->
+<div class="body-opa"></div>
+<div class="top"></div>
+
+<div class="header">
+    <div class="header-main">
+        <div class="header-center">
+            <div class="header-tit">500 INTERNAL SERVER ERROR // 内部服务器错误，崩溃啦！</div>
+            <div class="header-circle">
+                <div class="header-circle2">500</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="foot">
+    <div class="container">
+        <div class="row">
+            <!-- col-xs-* col-sm-* col-md-* col-lg-* 依次为超小设备、手机、平板、电脑 -->
+            <div class="main-left col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xs-offset-4 col-sm-offset-0 col-lg-offset-1"></div>
+            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-8">
+                <p style="text-indent: 0">ERROR 500 // INTERNAL SERVER ERROR // <a href="../toindex" style="color: red"
+                                                                                   title="点击前往主页">GO HOME !
+                    (打道回府)</a></p>
+                <h1 style="padding: 4px 0 10px 0">抱歉！内部服务器错误，崩溃啦......</h1>
+                <p style="text-indent: 0">可能产生的原因┐( ¯¯ํ¯、¯¯ํ） ( 这不是您的问题 ) ：</p><br>
+                <ul style="margin-left: 1em">
+                    <li>内部程序语法出错</li>
+                    <li>数据库系统(Database System)连接语句出错</li>
+                    <li>文件引用与包含路径出错(如未启用父路径)</li>
+                    <li>使用了服务器不支持的组件，如FSO(一个对文件操作的控件)</li>
+                    <li>其他错误......</li>
+                </ul>
+                <br>
+                <p>我们的系统仍然存在问题，尚不完善，我们为此对您致以诚挚的道歉，并进行深刻的自我反省，这将给您一个更好的体验。</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

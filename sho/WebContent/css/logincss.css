@@ -1,0 +1,108 @@
+.height-fluid{
+    height: 100%;
+}
+.bg-color{
+    background-color: #007cba;
+    padding: 0 !important;
+}
+.title-style{
+    position: relative;
+    height: 70px;
+}
+.title-style .logo-style{
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.uper{
+    width: 18%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.uper2{
+    width: 4.8%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.login-main{
+    margin-top: 15%;
+}
+.login-text{
+    margin: 30px 0 20px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+.login-btn{
+    width: 100%;
+}
+.bg-img{
+    width: 100%;
+    height: 100%;
+    background: url("../images/login_bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.text-slogan{
+    width: 100%;
+    color: #085471;
+    font-size: 3.3rem;
+    line-height: 3.7rem;
+    font-weight: 100;
+    position: absolute;
+    top: 45%;
+    left: 0;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
+}
+.footer i{
+    margin: 0 5px;
+}
+.form-horizontal input{
+    height: 36px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid #333;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+.form-horizontal input:focus{
+    box-shadow: none;
+    color: #007cba;
+}
+.error-text{
+    font-size: 12px;
+}
+.butt span{
+    position: relative;
+}
+.butt .span-before:before{
+    content: " ";
+    display: none;
+}
+.butt .span-before2:before{
+    content: " ";
+    display: table;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 66;
+    background: url('../images/timg.gif') no-repeat;
+    background-size: cover;
+}

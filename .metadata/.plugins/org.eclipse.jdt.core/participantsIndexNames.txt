@@ -1,0 +1,9 @@
+INDEX VERSION 1.131
+C:\Users\Shiso\Desktop\商城\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4148388763.index
+\sho\src
+C:\Users\Shiso\Desktop\商城\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1990642234.index
+\sho\src
+C:\Users\Shiso\Desktop\商城\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2244298065.index
+\sho\src
+C:\Users\Shiso\Desktop\商城\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4026169575.index
+\sho\src
